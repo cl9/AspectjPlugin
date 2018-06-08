@@ -1,0 +1,46 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+apply plugin: 'com.novoda.bintray-release'
+
+dependencies {
+    compile gradleApi()
+    compile localGroovy()
+    compile 'com.android.tools.build:gradle:3.0.1'
+    compile 'org.aspectj:aspectjrt:1.9.1'
+    compile 'org.aspectj:aspectjtools:1.9.1'
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+String localBintrayUser = properties.getProperty("bintray.user")
+String localBintrayApikey = properties.getProperty("bintray.apikey")
+
+publish {
+    bintrayUser = localBintrayUser   //bintray.com用户名
+    bintrayKey = localBintrayApikey  //bintray.com apikey
+    dryRun = false
+    userOrg = deps.userOrg
+    groupId = deps.groupId
+    artifactId = 'AspectPlugin'     //compile引用时的第2部分项目名
+    publishVersion = deps.publishVersion
+    desc = deps.desc
+    website = deps.website
+}
+
+group = 'com.zero.aspectj.plugin'
+version = '1.0.0'
+
+uploadArchives {
+    //使用当前目录下面的maven仓库，仓库在当前目录的repo文件目录中
+    repositories {
+        mavenDeployer {
+            repository(url: uri('../repo'))
+        }
+    }
+}
