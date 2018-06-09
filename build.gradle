@@ -6,7 +6,7 @@ buildscript {
             'groupId'       : 'com.zero',   //compile引用时的第1部分groupId
             'publishVersion': '1.0.0',   //compile引用时的第3部分版本号
             'desc'          : 'This is a plugin for aspectj',
-            'website'       : 'https://github.com/cl9',
+            'website'       : 'https://github.com/cl9/AspectjPlugin',
     ]
     repositories {
         google()
@@ -20,9 +20,11 @@ buildscript {
 
 allprojects {
     repositories {
+        maven {
+            url 'https://maven.google.com'
+        }
         google()
         jcenter()
-        maven { url "https://jitpack.io" }   // jitpack仓库
     }
 }
 

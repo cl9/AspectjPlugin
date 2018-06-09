@@ -3,12 +3,12 @@ buildscript {
     repositories {
         jcenter()
         maven {
-            url uri('../repo')
+            url uri('https://dl.bintray.com/woshifantuo3/maven')
         }
     }
     dependencies {
         // group:moduleName:version
-        classpath 'com.zero.aspectj.plugin:plugin:1.0.0'
+        classpath 'com.zero:AspectPlugin:1.0.0'
     }
 }
 apply plugin: 'aspectj.plugin'
@@ -43,5 +43,5 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    compile 'org.aspectj:aspectjrt:1.9.1'
+    implementation 'org.aspectj:aspectjrt:1.9.1'
 }
